@@ -13,16 +13,11 @@ def palindromeIndex(s):
     if (s == reversed_s):
         return -1
     
-    for i in range(n // 2):
+    for i in range(n):
         new_s = s[:i] + s[i + 1:]
         new_reversed_s = reversed_s[:n - i - 1] + reversed_s[n - i:]
         if (new_s == new_reversed_s):
             return i
-            
-        new_s = s[:n - i - 1] + s[n - i:]
-        new_reversed_s = reversed_s[:i] + reversed_s[i + 1:]
-        if (new_s == new_reversed_s):
-            return n - i - 1
             
     return -1
            
