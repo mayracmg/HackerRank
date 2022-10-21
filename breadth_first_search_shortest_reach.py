@@ -17,16 +17,14 @@ def transform_object(nodes, s):
             distances.append(distance)
     return distances
 
-def validate_completion(nodes, q, e, edge_start, edge_end):
+def validate_completion(nodes, q, edge_start, edge_end):
     if (nodes[edge_end][1] == False):
         nodes[edge_end][0] = 6 + nodes[edge_start][0]
         
         if (nodes[edge_start][1] == True):
             nodes[edge_end][1] = True
-            nodes[edge_start][1] = True
 
         q.put(edge_end)
-        edges.remove(e)
     
 def bfs(n, m, edges, s):
     nodes = {key: [0, False] for key in range(1, n + 1)}
@@ -43,11 +41,10 @@ def bfs(n, m, edges, s):
             edge_start = e[0]
             edge_end = e[1]
             
-            validate_completion(nodes, q, e, edge_start, edge_end)
-            validate_completion(nodes, q, e, edge_end, edge_start)
+            validate_completion(nodes, q, edge_start, edge_end)
+            validate_completion(nodes, q, edge_end, edge_start)
 
     distances = transform_object(nodes, s)
-        
     return distances            
 
 if __name__ == '__main__':
